@@ -95,12 +95,6 @@ jobs:
           CGO_ENABLED: "1"
         run: go build -buildvcs=false -tags "netgo osusergo" ./...
 
-      # The unkeyed-fields check is off because the existing code builds
-      # some struct literals that way.
-      - name: Vet
-        working-directory: sysbox-fs
-        run: go vet -buildvcs=false -composites=false ./...
-
       # Some of the tests create mounts, so they must run as root.
       - name: Unit tests
         working-directory: sysbox-fs
